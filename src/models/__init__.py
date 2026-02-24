@@ -12,8 +12,11 @@ from .browser_env import BrowserEnvironment, PlaywrightBrowser
 
 __all__ = [
     "ModelLoader",
-    "OpenAIModel",
-    "AnthropicModel",
+    "OpenAILLM",
+    "AnthropicLLM",
+    "DeepSeekLLM",
+    "QwenLLM",
+    "QwenCompatibleLLM",
     "MockLLM",
     "BrowserEnvironment",
     "PlaywrightBrowser",
