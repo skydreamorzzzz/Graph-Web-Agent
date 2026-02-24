@@ -1,0 +1,110 @@
+{
+  "experiment_id": "baseline_experiment_20260223_230457",
+  "benchmark": "miniwob",
+  "variant": "full_system",
+  "total_tasks": 3,
+  "results": [
+    {
+      "success": false,
+      "task_id": "miniwob_click_test_001",
+      "failed_node": "N1",
+      "steps": 0,
+      "duration": 2.0090389251708984,
+      "node_results": {
+        "N1": {
+          "status": "failed",
+          "confidence": 0.22199999999999998,
+          "verification": {
+            "confidence": 0.22199999999999998,
+            "hard_score": 0.25,
+            "soft_score": 0.24,
+            "consistency_score": 0.0,
+            "passed": false,
+            "details": {
+              "node_id": "N1",
+              "node_type": "NAVIGATE",
+              "threshold": 0.7
+            }
+          },
+          "reason": "验证未通过"
+        }
+      },
+      "error": "验证未通过",
+      "task_metadata": {
+        "category": "click",
+        "difficulty": "easy",
+        "benchmark": "miniwob"
+      }
+    },
+    {
+      "success": false,
+      "task_id": "miniwob_click_button_001",
+      "failed_node": "N1",
+      "steps": 0,
+      "duration": 2.0017664432525635,
+      "node_results": {
+        "N1": {
+          "status": "failed",
+          "confidence": 0.22199999999999998,
+          "verification": {
+            "confidence": 0.22199999999999998,
+            "hard_score": 0.25,
+            "soft_score": 0.24,
+            "consistency_score": 0.0,
+            "passed": false,
+            "details": {
+              "node_id": "N1",
+              "node_type": "NAVIGATE",
+              "threshold": 0.7
+            }
+          },
+          "reason": "验证未通过"
+        }
+      },
+      "error": "验证未通过",
+      "task_metadata": {
+        "category": "click",
+        "difficulty": "easy",
+        "benchmark": "miniwob"
+      }
+    },
+    {
+      "success": false,
+      "task_id": "miniwob_enter_text_001",
+      "failed_node": "N1",
+      "steps": 0,
+      "duration": 2.0010786056518555,
+      "node_results": {
+        "N1": {
+          "status": "failed",
+          "confidence": 0.22199999999999998,
+          "verification": {
+            "confidence": 0.22199999999999998,
+            "hard_score": 0.25,
+            "soft_score": 0.24,
+            "consistency_score": 0.0,
+            "passed": false,
+            "details": {
+              "node_id": "N1",
+              "node_type": "NAVIGATE",
+              "threshold": 0.7
+            }
+          },
+          "reason": "无进展检测触发"
+        }
+      },
+      "error": "无进展检测触发",
+      "task_metadata": {
+        "category": "text_input",
+        "difficulty": "easy",
+        "benchmark": "miniwob"
+      }
+    }
+  ],
+  "summary": {
+    "success_rate": 0.0,
+    "avg_steps": 0.0,
+    "avg_cost": 0.0,
+    "total_cost": 0
+  }
+}

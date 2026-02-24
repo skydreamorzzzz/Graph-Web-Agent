@@ -1,0 +1,25 @@
+{
+  "total_tasks": 0,
+  "success_rate": 0,
+  "avg_steps": 0,
+  "avg_llm_calls": 0,
+  "cost_per_success": 0,
+  "avg_duration": 0,
+  "failure_distribution": {
+    "plan_fail": 3
+  },
+  "avg_repair_depth": 0,
+  "raw_metrics": {
+    "success_count": 0,
+    "failure_count": 0,
+    "total_steps": 0,
+    "total_llm_calls": 0,
+    "total_cost": 0.0,
+    "total_duration": 0.0,
+    "failure_types": {
+      "plan_fail": 3
+    },
+    "repair_depths": [],
+    "tasks": []
+  }
+}

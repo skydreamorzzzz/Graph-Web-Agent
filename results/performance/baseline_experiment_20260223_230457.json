@@ -1,0 +1,44 @@
+{
+  "total_tasks": 3,
+  "success_rate": 0.0,
+  "avg_steps": 0.0,
+  "avg_llm_calls": 2.0,
+  "cost_per_success": 0,
+  "avg_duration": 2.0039613246917725,
+  "failure_distribution": {
+    "plan_fail": 3
+  },
+  "avg_repair_depth": 0,
+  "raw_metrics": {
+    "success_count": 0,
+    "failure_count": 3,
+    "total_steps": 0,
+    "total_llm_calls": 6,
+    "total_cost": 0.0015,
+    "total_duration": 6.011883974075317,
+    "failure_types": {
+      "plan_fail": 3
+    },
+    "repair_depths": [],
+    "tasks": [
+      {
+        "task_id": "miniwob_click_test_001",
+        "success": false,
+        "steps": 0,
+        "duration": 2.0090389251708984
+      },
+      {
+        "task_id": "miniwob_click_button_001",
+        "success": false,
+        "steps": 0,
+        "duration": 2.0017664432525635
+      },
+      {
+        "task_id": "miniwob_enter_text_001",
+        "success": false,
+        "steps": 0,
+        "duration": 2.0010786056518555
+      }
+    ]
+  }
+}

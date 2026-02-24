@@ -1,0 +1,40 @@
+# 默认系统参数配置
+system:
+  max_steps: 100
+  max_repair_per_node: 3
+  global_timeout: 300  # 秒
+
+# 验证阈值
+verification:
+  confidence_threshold: 0.7
+  hard_check_weight: 0.6
+  soft_check_weight: 0.3
+  consistency_weight: 0.1
+
+# 成本路由配置
+router:
+  use_llm_threshold: 0.5  # DOM复杂度阈值
+  small_model: "deepseek-chat"  # 小模型：deepseek-chat, qwen-turbo, gpt-3.5-turbo
+  large_model: "deepseek-coder"  # 大模型：deepseek-coder, qwen-max, gpt-4
+  upgrade_after_failures: 3
+
+# LLM配置
+llm:
+  temperature: 0.1
+  max_tokens: 2000
+  timeout: 30
+
+# 环境配置
+environment:
+  headless: false
+  viewport_width: 1280
+  viewport_height: 720
+  wait_timeout: 10000  # 毫秒
+
+# 日志配置
+logging:
+  level: "INFO"
+  save_screenshots: true
+  save_dom_snapshots: true
+
+

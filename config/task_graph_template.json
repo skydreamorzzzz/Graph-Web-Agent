@@ -1,0 +1,27 @@
+{
+  "task_id": "",
+  "task_description": "",
+  "nodes": [
+    {
+      "id": "N1",
+      "type": "NAVIGATE",
+      "goal": "导航到目标页面",
+      "predicate": "URL匹配或页面标题匹配",
+      "idempotent": true,
+      "params": {
+        "url": "",
+        "wait_for": ""
+      }
+    }
+  ],
+  "edges": [
+    ["N1", "N2"]
+  ],
+  "metadata": {
+    "created_at": "",
+    "compiler_version": "1.0",
+    "estimated_steps": 0
+  }
+}
+
+

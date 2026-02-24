@@ -1,0 +1,44 @@
+{
+  "experiment_id": "baseline_experiment_20260223_230045",
+  "benchmark": "miniwob",
+  "variant": "full_system",
+  "total_tasks": 3,
+  "results": [
+    {
+      "success": false,
+      "task_id": "miniwob_click_test_001",
+      "error": "attempted relative import beyond top-level package",
+      "task_metadata": {
+        "category": "click",
+        "difficulty": "easy",
+        "benchmark": "miniwob"
+      }
+    },
+    {
+      "success": false,
+      "task_id": "miniwob_click_button_001",
+      "error": "attempted relative import beyond top-level package",
+      "task_metadata": {
+        "category": "click",
+        "difficulty": "easy",
+        "benchmark": "miniwob"
+      }
+    },
+    {
+      "success": false,
+      "task_id": "miniwob_enter_text_001",
+      "error": "attempted relative import beyond top-level package",
+      "task_metadata": {
+        "category": "text_input",
+        "difficulty": "easy",
+        "benchmark": "miniwob"
+      }
+    }
+  ],
+  "summary": {
+    "success_rate": 0.0,
+    "avg_steps": 0.0,
+    "avg_cost": 0.0,
+    "total_cost": 0
+  }
+}

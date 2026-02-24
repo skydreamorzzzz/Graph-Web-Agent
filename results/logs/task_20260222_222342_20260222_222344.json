@@ -1,0 +1,11 @@
+{
+  "success": false,
+  "task_id": "task_20260222_222342",
+  "failed_node": "N1",
+  "steps": 0,
+  "duration": 2.008228063583374,
+  "node_results": {
+    "N1": {
+      "status": "failed",
+      "confidence": 0.22199999999999998,
+      "verification": 

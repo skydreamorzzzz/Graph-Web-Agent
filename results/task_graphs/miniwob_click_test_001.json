@@ -1,0 +1,35 @@
+{
+  "task_id": "miniwob_click_test_001",
+  "task_description": "点击标记为'Submit'的按钮",
+  "nodes": [
+    {
+      "id": "N1",
+      "type": "NAVIGATE",
+      "goal": "导航到起始页面",
+      "predicate": "页面加载完成",
+      "idempotent": true,
+      "params": {}
+    },
+    {
+      "id": "N2",
+      "type": "EXTRACT",
+      "goal": "提取页面信息",
+      "predicate": "信息提取完成",
+      "idempotent": true,
+      "params": {},
+      "control_flow": null
+    }
+  ],
+  "edges": [
+    [
+      "N1",
+      "N2"
+    ]
+  ],
+  "metadata": {
+    "created_at": "2026-02-23T23:04:48.860553",
+    "compiler_version": "1.0",
+    "estimated_steps": 2,
+    "fallback": true
+  }
+}

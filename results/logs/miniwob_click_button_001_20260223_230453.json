@@ -1,0 +1,27 @@
+{
+  "success": false,
+  "task_id": "miniwob_click_button_001",
+  "failed_node": "N1",
+  "steps": 0,
+  "duration": 2.0017664432525635,
+  "node_results": {
+    "N1": {
+      "status": "failed",
+      "confidence": 0.22199999999999998,
+      "verification": {
+        "confidence": 0.22199999999999998,
+        "hard_score": 0.25,
+        "soft_score": 0.24,
+        "consistency_score": 0.0,
+        "passed": false,
+        "details": {
+          "node_id": "N1",
+          "node_type": "NAVIGATE",
+          "threshold": 0.7
+        }
+      },
+      "reason": "验证未通过"
+    }
+  },
+  "error": "验证未通过"
+}
