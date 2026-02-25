@@ -43,6 +43,14 @@ python scripts/run_experiment.py --benchmark webarena --num-tasks 30
 
 ---
 
+### MiniWoB++ 数据来源说明
+
+当前项目支持两种 MiniWoB 任务来源：
+- `data/processed/miniwob_test.json` 或 `data/raw/miniwob/tasks.json`（JSON驱动）
+- 如果未提供 JSON，会自动从 `gymnasium/gym` 注册表读取 `miniwob/*` 环境ID（无需手工构造任务文件）
+
+如需使用注册表模式，请先确保安装并导入了 MiniWoB 对应包，使环境成功注册。
+
 ## 配置参数
 
 ### 系统参数（config/default_params.yaml）
