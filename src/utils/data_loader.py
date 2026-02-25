@@ -2,6 +2,7 @@
 数据集加载器 - 支持多种Web Agent Benchmark
 """
 import json
+import re
 from pathlib import Path
 from typing import List, Dict, Optional
 from enum import Enum
@@ -80,8 +81,14 @@ class DatasetLoader:
                 tasks = json.load(f)
                 return self._convert_miniwob_format(tasks)
         
+        # 尝试从Gym注册表自动发现MiniWoB任务（无需JSON）
+        registry_tasks = self._load_miniwob_from_registry()
+        if registry_tasks:
+            print(f"信息: 从Gym注册表加载MiniWoB任务: {len(registry_tasks)} 个")
+            return registry_tasks
+
         # 如果都不存在，返回示例任务
-        print(f"警告: 未找到MiniWoB++数据文件，使用示例任务")
+        print(f"警告: 未找到MiniWoB++数据文件，且无法从Gym注册表读取，使用示例任务")
         return self._get_miniwob_sample_tasks()
     
     def _load_webarena_tasks(self, split: str = "test") -> List[Dict]:
@@ -128,6 +135,65 @@ class DatasetLoader:
                 return data.get("tasks", [])
         return []
     
+    def _load_miniwob_from_registry(self) -> List[Dict]:
+        """从Gym/Gymnasium注册表加载MiniWoB任务。"""
+        registry_ids = []
+
+        # 优先使用gymnasium，再回退到gym
+        for module_name in ("gymnasium", "gym"):
+            try:
+                module = __import__(module_name)
+                registry = getattr(module, "registry", None)
+                if registry is None:
+                    continue
+
+                # gymnasium: dict-like registry; gym: EnvRegistry with values()
+                try:
+                    specs = registry.values()
+                except Exception:
+                    specs = []
+
+                for spec in specs:
+                    env_id = getattr(spec, "id", None)
+                    if env_id and env_id.startswith("miniwob/"):
+                        registry_ids.append(env_id)
+
+                if registry_ids:
+                    break
+            except Exception:
+                continue
+
+        if not registry_ids:
+            return []
+
+        # 去重 + 排序，保证结果稳定
+        unique_ids = sorted(set(registry_ids))
+
+        tasks = []
+        for env_id in unique_ids:
+            task_name = self._extract_miniwob_task_name(env_id)
+            tasks.append({
+                "task_id": env_id.replace("/", "_"),
+                "instruction": f"完成 MiniWoB 任务: {env_id}",
+                "start_url": f"https://miniwob.farama.org/{task_name}.html",
+                "task_type": task_name,
+                "success_criteria": {"type": "miniwob_reward", "threshold": 1.0},
+                "category": self._get_miniwob_category(task_name),
+                "difficulty": "easy",
+                "max_steps": 20,
+                "timeout": 60,
+                "benchmark": "miniwob",
+                "metadata": {"env_id": env_id, "source": "gym_registry"}
+            })
+
+        return tasks
+
+    def _extract_miniwob_task_name(self, env_id: str) -> str:
+        """从环境ID提取MiniWoB任务名。"""
+        task_part = env_id.split("/", 1)[-1]
+        # miniwob/click-test-v1 -> click-test
+        return re.sub(r"-v\d+$", "", task_part)
+
     def _convert_miniwob_format(self, raw_tasks: List[Dict]) -> List[Dict]:
         """转换MiniWoB++格式为标准格式"""
         converted = []

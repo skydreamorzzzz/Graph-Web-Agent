@@ -394,8 +394,21 @@ class ExperimentRunner:
             self.logger.logger.info(f"难度: {task.get('difficulty', 'unknown')}")
             self.logger.logger.info(f"{'='*60}")
             
+            task_instruction = task['instruction']
+            start_url = task.get('start_url')
+            env_id = task.get('metadata', {}).get('env_id') if isinstance(task.get('metadata'), dict) else None
+
+            # 将数据集上下文附加到任务描述，帮助编译器生成更可执行的图
+            context_lines = []
+            if env_id:
+                context_lines.append(f"环境ID: {env_id}")
+            if start_url:
+                context_lines.append(f"起始URL: {start_url}")
+            if context_lines:
+                task_instruction = f"{task_instruction}\n\n" + "\n".join(context_lines)
+
             result = self.run_task(
-                task['instruction'], 
+                task_instruction,
                 task_id=task['task_id']
             )
             

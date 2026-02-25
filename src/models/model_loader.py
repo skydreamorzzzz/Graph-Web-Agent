@@ -3,7 +3,11 @@ Model Loader - 支持多种LLM提供商
 """
 import os
 from typing import Dict, Optional
-from dotenv import load_dotenv
+
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - graceful fallback when optional dependency is missing
+    load_dotenv = None
 
 
 class ModelLoader:
@@ -13,7 +17,8 @@ class ModelLoader:
         self.config = config or {}
         
         # 先尝试从 .env 文件加载（如果存在）
-        load_dotenv()
+        if load_dotenv:
+            load_dotenv()
         
         # 获取API密钥（优先级：环境变量 > .env文件 > config）
         self.openai_api_key = os.environ.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY") or self.config.get("openai_api_key")
