@@ -61,7 +61,16 @@ class GraphValidator:
         # 拓扑验证
         if not self._validate_topology(nodes, edges):
             if self.auto_fix:
+                # 记录当前错误后尝试修复，并重新验证
                 self._fix_topology(task_graph)
+                nodes = task_graph.get("nodes", [])
+                edges = task_graph.get("edges", [])
+
+                # 清理上一轮“图中存在环”的错误，避免重复
+                self.errors = [e for e in self.errors if e != "图中存在环"]
+                if not self._validate_topology(nodes, edges):
+                    self.errors.append("自动修复后拓扑仍无效")
+                    return False, self.errors
             else:
                 return False, self.errors
                 
