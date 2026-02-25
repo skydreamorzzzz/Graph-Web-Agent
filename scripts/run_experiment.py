@@ -154,8 +154,14 @@ class ExperimentRunner:
             
             # 4. 如果失败且启用修复，尝试修复
             if not result["success"] and use_repair:
-                self.logger.logger.info("步骤4: 尝试局部修复...")
-                result = self._attempt_repair(task_graph, result)
+                # 仅在存在明确失败节点时进行局部修复；执行级错误直接返回
+                if result.get("failed_node"):
+                    self.logger.logger.info("步骤4: 尝试局部修复...")
+                    result = self._attempt_repair(task_graph, result)
+                else:
+                    self.logger.logger.warning(
+                        f"跳过局部修复：未定位失败节点，错误={result.get('error', 'unknown')}"
+                    )
             
             # 5. 记录结果
             self.logger.log_task_end(task_id, result)
